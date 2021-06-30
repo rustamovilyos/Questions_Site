@@ -5,16 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<form action="" method="post">
+<form action="{% url 'check' %}">
 
     {% for savol in all_savollar %}
     {{ savol.text }} <br>
-    <form>
+<fieldset id="{{ savol.id }}">
         {% for javob in savol.choice_set.all %}
-        <input type="radio" id="savol" name="sav" value="birlik">
+        <input type="radio" id="savol" name="{{ savol.id }}" value="{{ javob.id }}">
         <label for="savol">{{javob.text}} </label> <br>
         {% endfor %}
-    </form>
+</fieldset>
     {% endfor %}
     <input type="submit" value="OK">
 </form>
