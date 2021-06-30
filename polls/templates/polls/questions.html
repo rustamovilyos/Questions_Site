@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+
+    {% for savol in all_savollar %}
+    {{ savol.text }} <br>
+    <form>
+        {% for javob in savol.choice_set.all %}
+        <input type="radio" id="savol" name="sav" value="birlik">
+        <label for="savol">{{javob.text}} </label> <br>
+        {% endfor %}
+    </form>
+    {% endfor %}
+    <input type="submit" value="OK">
+</form>
+
+</body>
+</html>
