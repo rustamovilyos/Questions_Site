@@ -22,7 +22,10 @@ def check(request):
         print(value)
         print(Choice.objects.get(pk=value))
         if ch.correct == True:
-            r = r + f"{ch.questions} <p style='color:green'><strong>{ch.text}</strong></p>"
+                r = r + f"{ch.questions} <p style='color:green'><strong>{ch.text}</strong></p>" \
+                    f"<hr>"
+
         else:
-            r = r + f"{ch.questions} <p style='color:red'>{ch.text}</p>"
+            r = r + f"{ch.questions} <p style='color:red'>{ch.text}</p>" \
+                    f"<hr>"
     return HttpResponse(r)
