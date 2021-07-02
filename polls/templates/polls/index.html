@@ -1,5 +1,7 @@
 {% extends './base.html' %}
 {% block main %}
+<h1>Fanni tanlang!</h1>
+
 {% for fan in fanlar %}
 <div class="list-group">
     <a href="{% url 'questions' fan.id %}" class="list-group-item list-group-item-action list-group-item-primary">

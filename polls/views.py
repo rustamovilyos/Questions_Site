@@ -18,6 +18,11 @@ def check(request):
     print(request.GET)
     for key, value in request.GET.items():
         ch = Choice.objects.get(pk=value)
-        r = r + f"Javob {key}, {ch.correct} <br>"
-        print(ch)
+        print(key)
+        print(value)
+        print(Choice.objects.get(pk=value))
+        if ch.correct == True:
+            r = r + f"{ch.questions} <p style='color:green'><strong>{ch.text}</strong></p>"
+        else:
+            r = r + f"{ch.questions} <p style='color:red'>{ch.text}</p>"
     return HttpResponse(r)

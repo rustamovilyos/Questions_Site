@@ -8,5 +8,5 @@ from polls.views import index, savollar, check
 urlpatterns = [
     path('', index, name='index'),
     path('questions/<int:category_id>', savollar, name='questions'),
-    path('questions/check/', check, name='check')
+    path('check/', check, name='check')
 ]
