@@ -1,31 +1,30 @@
 from django.shortcuts import render, HttpResponse
 from polls.models import Questions, Choice, Category
+from django.views.generic import ListView
 
 
-def index(request):
-    fanlar = Category.objects.all()
-    return render(request, 'polls/index.html', {'fanlar': fanlar})
+class IndexView(ListView):
+    template_name = 'polls/index.html'
+
+    def index(self, **kwargs):
+        fanlar = super().index(**kwargs)
+        fanlar['fanlar':fanlar] = Category.objects.all()
+        return fanlar
+
+    def savollar(self, request, category_id):
+        savol = Category.objects.get(pk=category_id)
+        all_savollar = Questions.objects.filter(category=savol)
+        return render(request, 'polls/questions.html', {'all_savollar': all_savollar, })
 
 
-def savollar(request, category_id):
-    savol = Category.objects.get(pk=category_id)
-    all_savollar = Questions.objects.filter(category=savol)
-    return render(request, 'polls/questions.html', {'all_savollar': all_savollar, })
+    def check(request):
+        answer = []
+        questions_numb = []
+        for key, value in request.GET.items():
+            questions_numb.append(key)
+            answer.append(int(value))
 
-
-def check(request):
-    r = ''
-    print(request.GET)
-    for key, value in request.GET.items():
-        ch = Choice.objects.get(pk=value)
-        print(key)
-        print(value)
-        print(Choice.objects.get(pk=value))
-        if ch.correct == True:
-                r = r + f"{ch.questions} <p style='color:green'><strong>{ch.text}</strong></p>" \
-                    f"<hr>"
-
-        else:
-            r = r + f"{ch.questions} <p style='color:red'>{ch.text}</p>" \
-                    f"<hr>"
-    return HttpResponse(r)
+        questions_l = Questions.objects.filter(id__in=questions_numb)
+        return render(request, 'polls/questions.html',
+                      {'questions_l': questions_l,
+                       'answer': answer})

@@ -2,7 +2,7 @@
 {% block main %}
 <h1>Fanni tanlang!</h1>
 
-{% for fan in fanlar %}
+{% for fan in object_list %}
 <div class="list-group">
     <a href="{% url 'questions' fan.id %}" class="list-group-item list-group-item-action list-group-item-primary">
         {{ fan.nomi }}
