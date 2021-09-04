@@ -1,10 +1,8 @@
 {% extends './base.html' %}
 
 {% block main %}
-
 <h2>Savollar</h2>
-{% if all_savollar %}
-<form action="{% url 'check' %}">
+<form action="{% url 'polls:check' %}">
     {% for savol in all_savollar %}
     {{ savol.text }} <br>
 
@@ -16,41 +14,6 @@
     {% endfor %}
 
     <input type="submit" value="OK">
-    <a style="text-decoration:none;" href="{% url 'index' %}"><button>Home</button></a>
 </form>
-
-{% else %}
-<dl>
-    {% for question in questions_l %}
-    <dt>
-        <p>
-            {{ forloop.counter }}.{{ question.text }}
-        </p>
-    </dt>
-    {% for choice in question.choice_set.all %}
-    {% if choice.correct %}
-    <dd style="color: green;">
-        <strong>
-            {{ choice.text }}
-        </strong>
-    </dd>
-    {% elif choice.id in answer %}
-    <dd style="color:red;">
-        {{ choice.text }}
-    </dd>
-    {% else %}
-    <dd>
-        {{ choice.text }}
-    </dd>
-    {% endif %}
-    {% endfor %}
-    <hr>
-    {% endfor %}
-    <a style="text-decoration:none;" href="{% url 'index' %}"><button>Home </button></a>
-</dl>
-
-
-
-{% endif %}
-
+    <a style="text-decoration:none;" href="{% url 'polls:index' %}"><button>Home</button></a>
 {% endblock %}

@@ -1,12 +1,15 @@
 {% extends './base.html' %}
-{% block main %}
-<h1>Fanni tanlang!</h1>
 
+{% block main %}
+
+<h4 class="btn btn-warning"> Bilimingizni sinab ko'rish uchun fanni tanlang!</h4>
 {% for fan in object_list %}
 <div class="list-group">
-    <a href="{% url 'questions' fan.id %}" class="list-group-item list-group-item-action list-group-item-primary">
+    <a href="{% url 'polls:questions' fan.id %}" class="list-group-item list-group-item-action list-group-item-primary">
         {{ fan.nomi }}
     </a>
 </div>
+
 {% endfor %}
+
 {% endblock %}
