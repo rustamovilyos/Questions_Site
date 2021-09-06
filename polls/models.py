@@ -11,19 +11,19 @@ class Category(models.Model):
 
 class Questions(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    text = models.CharField(max_length=500)
+    quiz_text = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.text
+        return self.quiz_text
 
 
 class Choice(models.Model):
     questions = models.ForeignKey(Questions, on_delete=models.CASCADE)
-    text = models.CharField(max_length=150)
+    answer_text = models.CharField(max_length=150)
     correct = models.BooleanField()
 
     def __str__(self):
-        return self.text
+        return self.answer_text
 
 
 class Result(models.Model):

@@ -4,16 +4,16 @@
 <h2>Savollar</h2>
 <form action="{% url 'polls:check' %}">
     {% for savol in all_savollar %}
-    {{ savol.text }} <br>
+    {{ savol.quiz_text }} <br>
 
     {% for javob in savol.choice_set.all %}
     <input type="radio" id="savol" name="{{ savol.id }}" value="{{ javob.id }}" required>
-    <label for="savol">{{javob.text}} </label><br>
+    <label for="savol">{{javob.answer_text}} </label><br>
     {% endfor %}
     <hr>
     {% endfor %}
 
     <input type="submit" value="OK">
-</form>
+</form><br>
     <a style="text-decoration:none;" href="{% url 'polls:index' %}"><button>Home</button></a>
 {% endblock %}

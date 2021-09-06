@@ -3,7 +3,7 @@ from polls.models import Questions, Category, Choice
 
 
 class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'questions', 'text', 'correct')
+    list_display = ('id', 'questions', 'answer_text', 'correct')
 
 
 admin.site.register(Questions)
